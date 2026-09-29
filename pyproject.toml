@@ -1,6 +1,6 @@
 [project]
 name = "Modulo-Common"
-version = "0.1.0"
+version = "0.2.0"
 description = "Add your description here"
 readme = "README.md"
 authors = [
@@ -8,9 +8,15 @@ authors = [
 ]
 requires-python = ">=3.13"
 dependencies = [
+    "grpcio>=1.84.0",
     "sqlalchemy>=2.1.1",
 ]
 
 [build-system]
 requires = ["uv_build>=0.11.21,<0.12.0"]
 build-backend = "uv_build"
+
+[dependency-groups]
+dev = [
+    "grpcio-tools>=1.84.0",
+]
