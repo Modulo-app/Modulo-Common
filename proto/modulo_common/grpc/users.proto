@@ -1,0 +1,31 @@
+syntax = "proto3";
+package modulo.users.v1;
+
+import "google/protobuf/timestamp.proto";
+
+service UserService {
+    rpc GetOrCreate(UserBody) returns (UserResponse) {}
+}
+
+enum ProviderType {
+    PROVIDER_TYPE_UNSPECIFIED = 0;
+    PROVIDER_TYPE_APPLE = 1;
+    PROVIDER_TYPE_GOOGLE = 2;
+    PROVIDER_TYPE_CLASSIC = 3;
+}
+
+message UserBody {
+    string email = 1;
+    optional string firstName = 2;
+    ProviderType provider = 3;
+    string providerId = 4;
+}
+
+message UserResponse {
+    string id = 1;
+    optional string firstName = 2;
+    string email = 3;
+    ProviderType provider = 4;
+    google.protobuf.Timestamp createdAt = 5;
+    bool isNewUser = 6;
+}
