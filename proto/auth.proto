@@ -1,0 +1,28 @@
+syntax = "proto3";
+package modulo.auth.v1;
+
+service AuthService {
+    rpc SignInWithApple(AppleUserBody) returns (AppleUserResponse) {}
+    rpc RefreshToken(RefreshTokenBody) returns (TokenResponse) {}
+}
+
+message AppleUserBody {
+    string identityToken = 1;
+    string authorizationCode = 2;
+    optional string firstName = 3;
+}
+
+message AppleUserResponse {
+    string userId = 1;
+    bool isNewAccount = 2;
+    TokenResponse tokens = 3;
+}
+
+message RefreshTokenBody {
+    string refreshToken = 1;
+}
+
+message TokenResponse {
+    string accessToken = 1;
+    string refreshToken = 2;
+}
